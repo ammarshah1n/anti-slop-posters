@@ -1,0 +1,20 @@
+{
+  "name": "motion-poster",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "still": "remotion still src/index.ts MotionPoster out/poster.png --frame=149",
+    "render": "remotion render src/index.ts MotionPoster out/poster.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.543",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.543"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "^5.6.0"
+  }
+}

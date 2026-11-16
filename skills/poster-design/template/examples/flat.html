@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Saturday Market, Harbour Street</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<style>
+/* Direction 4: Flat colour. Fictional market, for demonstration. */
+:root{
+  --W:1200px; --H:1600px;
+  --paper:#F2D64B; --ink:#1A1A17; --accent:#1F3FBF;
+  --font-display:"Bricolage Grotesque",sans-serif;
+  --m:72px; --g:24px;
+}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;display:grid;place-items:center;background:color-mix(in srgb,var(--ink) 88%,var(--paper))}
+.stage{width:calc(var(--W)*var(--fit,1));height:calc(var(--H)*var(--fit,1))}
+.poster{width:var(--W);height:var(--H);position:relative;overflow:hidden;transform:scale(var(--fit,1));transform-origin:0 0;
+  background:var(--paper);color:var(--ink);font-family:var(--font-display)}
+.poster::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.3;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+.hero{position:absolute;left:var(--m);top:calc(var(--m) - 24px);font-size:352px;font-weight:800;font-stretch:78%;line-height:.84;letter-spacing:-.012em}
+
+/* the accent, used once: one circle, rising behind the band */
+.circle{position:absolute;left:600px;top:780px;width:760px;height:760px;border-radius:50%;background:var(--accent)}
+.what{position:absolute;left:var(--m);top:860px;width:470px;font-size:44px;line-height:1.2;font-weight:500;letter-spacing:-.01em}
+
+.band{position:absolute;left:0;right:0;bottom:0;height:372px;background:var(--ink);color:var(--paper);padding:var(--m);
+  display:grid;grid-template-columns:repeat(6,1fr);column-gap:var(--g);align-items:end}
+.time{grid-column:1/5;font-size:300px;font-weight:800;font-stretch:78%;line-height:.72;letter-spacing:-.012em;word-spacing:.08em}
+.info{grid-column:5/-1;font-size:32px;line-height:1.25;font-weight:500;padding-bottom:2px}
+.info p+p{margin-top:14px}
+
+@page{size:1200px 1600px;margin:0}
+@media print{body{display:block;background:none}.stage{width:auto;height:auto}.poster{transform:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+<main class="poster">
+
+  <h1 class="hero">Saturday<br>Market</h1>
+
+  <div class="circle" aria-hidden="true"></div>
+  <p class="what">Fresh produce, bread, plants, second-hand records and hot coffee.</p>
+
+  <section class="band">
+    <div class="time">8 to 1</div>
+    <div class="info">
+      <p>Every Saturday</p>
+      <p>Harbour Street<br>car park</p>
+      <p>Free entry</p>
+    </div>
+  </section>
+
+</main>
+</div>
+<script>
+(()=>{if(window.__RENDER__)return;const p=document.querySelector('.poster');
+const fit=()=>document.documentElement.style.setProperty('--fit',Math.min(innerWidth/p.offsetWidth,innerHeight/p.offsetHeight));
+fit();addEventListener('resize',fit)})();
+</script>
+</body>
+</html>

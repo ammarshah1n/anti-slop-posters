@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field Studies, Harbour Gallery</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+/* Direction 2: Swiss. Fictional exhibition, for demonstration. */
+:root{
+  --W:1200px; --H:1600px;
+  --paper:#ECEAE4; --ink:#1B1D22; --accent:#2F4BFF;
+  --ink-soft:color-mix(in srgb,var(--ink) 58%,var(--paper));
+  --hairline:color-mix(in srgb,var(--ink) 85%,var(--paper));
+  --font-display:"Archivo",sans-serif;
+  --m:72px; --g:24px;
+}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;display:grid;place-items:center;background:color-mix(in srgb,var(--ink) 88%,var(--paper))}
+.stage{width:calc(var(--W)*var(--fit,1));height:calc(var(--H)*var(--fit,1))}
+.poster{width:var(--W);height:var(--H);position:relative;overflow:hidden;transform:scale(var(--fit,1));transform-origin:0 0;
+  background:var(--paper);color:var(--ink);font-family:var(--font-display);font-stretch:100%;
+  padding:var(--m);display:grid;grid-template-columns:repeat(6,1fr);column-gap:var(--g);grid-template-rows:auto auto 1fr}
+
+.head{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);column-gap:var(--g);
+  font-size:27px;font-weight:500;line-height:1.25;padding-bottom:28px;border-bottom:2px solid var(--ink)}
+.head :nth-child(1){grid-column:1/3} .head :nth-child(2){grid-column:3/5} .head :nth-child(3){grid-column:5/-1}
+
+.hero{grid-column:1/-1;margin-top:56px;font-size:262px;font-weight:800;font-stretch:88%;line-height:.88;letter-spacing:-.035em}
+
+/* the accent, used once: one circle, cropped by two edges */
+.circle{position:absolute;left:-220px;bottom:-220px;width:900px;height:900px;border-radius:50%;background:var(--accent)}
+
+.caption{grid-column:5/-1;align-self:start;margin-top:96px;font-size:30px;line-height:1.3;font-weight:500}
+.info{grid-column:5/-1;align-self:end;font-size:28px;line-height:1.3;font-weight:500}
+.info p+p{margin-top:18px}
+.info .k{display:block;color:var(--ink-soft);font-weight:400}
+
+@page{size:1200px 1600px;margin:0}
+@media print{body{display:block;background:none}.stage{width:auto;height:auto}.poster{transform:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+<main class="poster">
+
+  <header class="head"><span>Harbour Gallery</span><span>Photography, group exhibition</span><span>2 May to 28 June</span></header>
+
+  <h1 class="hero">Field<br>Studies</h1>
+
+  <div class="circle" aria-hidden="true"></div>
+
+  <p class="caption">Eleven photographers on land that changes with the tide.</p>
+
+  <div class="info">
+    <p><span class="k">Opening</span>Thursday 1 May, 6pm</p>
+    <p><span class="k">Open</span>Tuesday to Sunday, 10am to 5pm</p>
+    <p><span class="k">Find us</span>88 Wharf Road. Free entry</p>
+  </div>
+
+</main>
+</div>
+<script>
+(()=>{if(window.__RENDER__)return;const p=document.querySelector('.poster');
+const fit=()=>document.documentElement.style.setProperty('--fit',Math.min(innerWidth/p.offsetWidth,innerHeight/p.offsetHeight));
+fit();addEventListener('resize',fit)})();
+</script>
+</body>
+</html>
